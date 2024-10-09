@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Server Panel Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .correct {
+            background-color: green;
+        }
+
+        .wrong {
+            background-color: red;
+        }
+
+        .next-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Скрыть кнопку изначально */
+        }
+
+        .next-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Open Server Panel Quiz</h1>
+        <div id="question-container">
+            <p id="question-text"></p>
+            <div id="answer-buttons" class="btn-container">
+                <button class="btn" id="btnA" onclick="selectAnswer('A')">A</button>
+                <button class="btn" id="btnB" onclick="selectAnswer('B')">B</button>
+                <button class="btn" id="btnC" onclick="selectAnswer('C')">C</button>
+            </div>
+        </div>
+        <button id="next-btn" class="next-btn" onclick="nextQuestion()">Келесі сұрақ</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Open Server Panel-ді іске қосу үшін қандай команда қолданылады?",
+                answers: { A: "start_open_server", B: "open_server", C: "start" },
+                correctAnswer: "B"
+            },
+            {
+                question: "Серверді тоқтату үшін қандай команда пайдаланылады?",
+                answers: { A: "stop", B: "shutdown_server", C: "close_server" },
+                correctAnswer: "A"
+            },
+            {
+                question: "PHP конфигурациясын өзгерту үшін қандай команда пайдаланылады?",
+                answers: { A: "php_config", B: "change_php", C: "php_ini" },
+                correctAnswer: "C"
+            },
+            {
+                question: "MySQL серверін іске қосу үшін қандай команда қолданылады?",
+                answers: { A: "mysql_start", B: "start_mysql", C: "run_mysql" },
+                correctAnswer: "B"
+            },
+            {
+                question: "Open Server Panel-ді жаңарту командасы қандай?",
+                answers: { A: "update_open_server", B: "upgrade", C: "check_for_updates" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Сайттар тізімін көру үшін қандай команда пайдаланылады?",
+                answers: { A: "list_sites", B: "show_sites", C: "view_sites" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Сервер журналдарын тексеру үшін қандай команда бар?",
+                answers: { A: "check_logs", B: "view_logs", C: "logs" },
+                correctAnswer: "B"
+            },
+            {
+                question: "Open Server Panel параметрлерін сақтау үшін қандай команда қажет?",
+                answers: { A: "save_settings", B: "apply_changes", C: "commit_settings" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Open Server Panel-ді командалық жол арқылы қалай іске қосуға болады?",
+                answers: { A: "open_server.exe", B: "run_open_server", C: "start_panel" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Open Server Panel-ді қайта жүктеу үшін қандай команда пайдаланылады?",
+                answers: { A: "restart", B: "reload", C: "reset" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Open Server Panel-де виртуалды хосттарды қосу үшін қандай команда пайдаланылады?",
+                answers: { A: "add_virtual_host", B: "create_vhost", C: "new_host" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Open Server Panel-де конфигурация файлдарын тексеру үшін қандай команда қолданылады?",
+                answers: { A: "check_config", B: "validate_settings", C: "inspect_config" },
+                correctAnswer: "B"
+            },
+            {
+                question: "Open Server Panel-де Apache серверін қосу үшін қандай команда бар?",
+                answers: { A: "start_apache", B: "apache_on", C: "run_apache" },
+                correctAnswer: "A"
+            },
+            {
+                question: "Open Server Panel-ден MySQL-ге кіргенде қандай команда пайдаланылады?",
+                answers: { A: "mysql_login", B: "connect_mysql", C: "open_mysql" },
+                correctAnswer: "C"
+            },
+            {
+                question: "Open Server Panel-де сервер параметрлерін қайтадан жүктеу үшін қандай команда керек?",
+                answers: { A: "reload_server", B: "refresh", C: "reset_settings" },
+                correctAnswer: "A"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0; // Переменная для подсчета правильных ответов
+
+        function showQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById("question-text").innerText = question.question;
+            document.getElementById("btnA").innerText = "A) " + question.answers.A;
+            document.getElementById("btnB").innerText = "B) " + question.answers.B;
+            document.getElementById("btnC").innerText = "C) " + question.answers.C;
+        }
+
+        function selectAnswer(answer) {
+            const question = questions[currentQuestionIndex];
+            const buttons = document.querySelectorAll(".btn");
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.innerText[0] === question.correctAnswer) {
+                    btn.classList.add("correct");
+                }
+                if (btn.innerText[0] === answer && answer !== question.correctAnswer) {
+                    btn.classList.add("wrong");
+                }
+            });
+
+            // Увеличение счетчика правильных ответов
+            if (answer === question.correctAnswer) {
+                correctAnswers++;
+            }
+
+            document.getElementById("next-btn").style.display = "block";
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                document.querySelectorAll(".btn").forEach(btn => {
+                    btn.disabled = false;
+                    btn.classList.remove("correct", "wrong");
+                });
+                document.getElementById("next-btn").style.display = "none";
+                showQuestion();
+            } else {
+                // Отображение результатов
+                document.getElementById("question-container").innerHTML = `
+                    <h2>Тест аяқталды!</h2>
+                    <p>Сіз ${correctAnswers} жауап бердіңіз / ${questions.length}.</p>
+                `;
+                document.getElementById("next-btn").style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", showQuestion);
+    </script>
+</body>
+</html>
