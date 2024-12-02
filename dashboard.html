@@ -5,15 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Профиль</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
+    
+    * {
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-style: normal;
+      color: #395886 !important;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f9;
+      color: #395886;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #f4f4f9;
-      height: 100vh;
+      padding-bottom: 80px; /* Отступ для нижней навигации */
     }
 
     .profile {
@@ -25,27 +42,61 @@
       width: 100%;
       max-width: 400px;
       text-align: center;
-      transition: transform 0.3s ease-in-out;
     }
 
     .profile h1 {
-      font-size: 28px;
-      color: #395886;
+      font-size: 24px;
       margin-bottom: 10px;
     }
 
     .profile p {
-      font-size: 18px;
-      color: #555;
+      font-size: 16px;
       margin: 5px 0;
     }
 
     .profile img {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       margin-bottom: 20px;
-      object-fit: cover;
+    }
+
+    .info-block {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .info-block h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .info-block p,
+    .info-block a {
+      font-size: 14px;
+      color: #555;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .info-block a {
+      color: #395886;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .info-block iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
     }
 
     .bottom-nav {
@@ -58,7 +109,7 @@
       background-color: #fff;
       padding: 12px 16px;
       box-shadow: 0px -4px 8px #395886;
-      opacity: 0.9;
+      opacity: 0.8;
       font-weight: 800;
     }
 
@@ -70,6 +121,36 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .bottom-nav a span {
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .schedule, .schedule-list {
+        max-width: 600px;
+        margin: 20px auto;
+      }
+
+      .bottom-nav {
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 16px;
+        position: static;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .bottom-nav {
+        padding: 16px 40px;
+      }
+
+      .bottom-nav a {
+        font-size: 14px;
+      }
     }
 
     .nav {
@@ -149,13 +230,23 @@
         flex-direction: row;
       }
     }
-
   </style>
 </head>
 <body>
   <div class="profile">
     <h1 id="studentName">Имя не найдено</h1>
     <p id="studentGroup">Группа: неизвестно</p>
+  </div>
+
+  <div class="info-block">
+    <h2>О Колледже</h2>
+    <p>⚡️Болашақты жоспарла, POLYTECH-ті таңда!</p>
+    <p><strong>Контакты:</strong> +7 (712) 236-56-26</p>
+    <p><strong>Email:</strong> <a href="politcoll@mail.ru">politcoll@mail.ru</a></p>
+    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/atyrau_politechnic?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">@Politech</a></p>
+
+    <iframe class="share-frame-view__frame" src="https://yandex.kz/map-widget/v1/?from=maps&amp;ll=51.940767%2C47.134647&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=51.940142%2C47.135069&amp;whatshere%5Bzoom%5D=17&amp;z=17.4"></iframe>
+
   </div>
 
   <nav class="nav">
@@ -172,7 +263,7 @@
       <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
     </div>
     <div class="nav-item">
-      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+      <a href="dashboard.html"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
     </div>
   </nav>
 

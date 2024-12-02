@@ -5,9 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Кесте</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
+    
+    * {
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-style: normal;
+      color: #395886 !important;
+    }
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0px;
+    }
+
+      /* Заголовок */
+      .header {
+      background-color: #395886 !important;
+      color: #fff !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: auto;
+      text-align: center;
+      color: #fff !important;
+    }
+
+    .header .icon-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header .icon {
+      width: 24px;
+      height: 24px;
     }
     h1 {
       text-align: center;
@@ -15,6 +58,9 @@
       margin: 0;
       background-color: #007bff;
       color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 0;
+      overflow-x: hidden; /* Убираем горизонтальную прокрутку */
     }
 
     #current-day, #current-date {
@@ -32,38 +78,53 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       overflow: hidden;
+      margin: 10px auto;
+      width: 95%; /* Адаптивная ширина */
+      max-width: 700px;
+      color: white !important;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow-x: auto; /* Прокрутка для широкой таблицы */
+      padding: 10px;
     }
 
     table {
       width: 100%;
+      border-collapse: collapse;
+      width: 100%; /* Таблица растягивается на весь контейнер */
       border-collapse: collapse;
     }
 
     th, td {
       padding: 12px;
       text-align: center;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px; /* Основной размер текста */
+      word-wrap: break-word; /* Перенос длинных слов */
     }
 
     th {
-      background-color: #007bff;
-      color: white;
+      color: white !important;
+      background-color: #395886;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     td {
       background-color: #fdfdfd;
       border-bottom: 1px solid #ddd;
       font-size: 14px;
+      
     }
 
     tr:nth-child(even) td {
       background-color: #f7f7f7;
-    }
+}
 
-    tr:last-child td {
-      border-bottom: none;
-    }
+tr:last-child td {
+    border-bottom: none;
+}
 
     /* Навигационная панель */
     .nav {
@@ -146,10 +207,15 @@
   </style>
 </head>
 <body>
-  <h1>Сабақ Кестесі</h1>
+  <header class="header">
+    <h1>Сабақ Кестесі</h1>
+    <div class="icon-container">
+        </div>
+  </header>
+
   <p id="current-day"></p>
   <p id="current-date"></p>
-  <div id="schedule-content"></div>
+  <div id="schedule-content"> </div>
 
   <nav class="nav">
     <div class="nav-item active">
@@ -165,7 +231,7 @@
       <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
     </div>
     <div class="nav-item">
-      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+      <a href="dashboard.html"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
     </div>
   </nav>
   <script>

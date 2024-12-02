@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Главная</title>
   <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
+    
+    * {
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-style: normal;
+      color: #395886 !important;
+    }
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
     /* Общий стиль */
@@ -12,17 +22,17 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+
     }
 
     body {
       font-family: 'Rubik', sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
     }
 
     /* Заголовок */
     .header {
-      background-color: #fff;
+      background-color: #395886 !important;
+      color: #fff !important;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -31,6 +41,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+
     }
 
     .header h1 {
@@ -38,6 +49,7 @@
       font-weight: bold;
       margin: auto;
       text-align: center;
+      color: #fff !important;
     }
 
     .header .icon-container {
@@ -60,6 +72,7 @@
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
       border: 1px solid #ddd;
       margin-top: 50px;
+   
     }
 
     .schedule h2 {
@@ -257,7 +270,7 @@
     <h1>Главная</h1>
     <div class="icon-container">
       <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/49135f63400aa286e3dd31dc4cb28da69bfc976405b0d1b9762fbe48e23e7388?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="Уведомления" class="icon">
-      <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="Все предметы" class="icon">
+    <!-- <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="Все предметы" class="icon"> --> 
     </div>
   </header>
 
@@ -351,7 +364,7 @@
       <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
     </div>
     <div class="nav-item">
-      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+      <a href="dashboard.html"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
     </div>
   </nav>
 </body>
