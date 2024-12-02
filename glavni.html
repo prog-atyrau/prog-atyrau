@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+    /* Общий стиль */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    /* Заголовок */
+    .header {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: auto;
+      text-align: center;
+    }
+
+    .header .icon-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Секция расписания */
+    .schedule {
+      background-color: #fff;
+      border-radius: 16px;
+      margin: 20px 16px;
+      padding: 16px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      margin-top: 50px;
+    }
+
+    .schedule h2 {
+      font-size: 18px;
+      font-weight: bold;
+      opacity: 0.8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .lesson {
+      margin-bottom: 50px;
+      margin-top: 50px;
+      border: 5px solid #395886;
+      opacity: 0.8;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .lesson h3 {
+      font-size: 16px;
+      margin: 8px 0;
+      font-weight: 800;
+    }
+
+    .lesson p {
+      font-size: 14px;
+      color: #666;
+      font-weight: bold;
+      margin: 4px 0;
+    }
+
+    /* Расписание список */
+    .schedule-list {
+      margin: 16px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0px 4px 8px rgba(248, 21, 21, 0.131);
+      border: 1px solid #ddd;
+      overflow: hidden;
+    }
+
+    .schedule-list .card {
+      padding: 16px;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0px -4px 8px 1px #395886;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+
+    .schedule-list .card:last-child {
+      border-bottom: none;
+    }
+
+    /* Нижняя навигация */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 12px 16px;
+      box-shadow: 0px -4px 8px #395886;
+      opacity: 0.8;
+      font-weight: 800;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav a span {
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .schedule, .schedule-list {
+        max-width: 600px;
+        margin: 20px auto;
+      }
+
+      .bottom-nav {
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 16px;
+        position: static;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .bottom-nav {
+        padding: 16px 40px;
+      }
+
+      .bottom-nav a {
+        font-size: 14px;
+      }
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      transition: transform 0.3s;
+    }
+
+    .nav-item.active img {
+      transform: scale(1.2);
+    }
+
+    .nav-item:hover img, .nav-item:hover {
+      color: #007bff;
+      transform: scale(1.1);
+    }
+
+    .nav-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .helper-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav {
+        height: 80px;
+      }
+
+      .nav-item {
+        font-size: 14px;
+      }
+
+      .nav-item img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    /* Для маленьких экранов */
+    @media (max-width: 767px) {
+      .helper-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        height: 60px;
+        flex-direction: row;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <h1>Главная</h1>
+    <div class="icon-container">
+      <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/49135f63400aa286e3dd31dc4cb28da69bfc976405b0d1b9762fbe48e23e7388?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="Уведомления" class="icon">
+      <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="Все предметы" class="icon">
+    </div>
+  </header>
+
+  <!-- Расписание -->
+  <section class="schedule">
+    <h2>Расписание</h2>
+    <div class="lesson">
+      <h3>Adobe Photoshop</h3>
+      <p>⏰ 13:30 - 18:00 | 📍 3D Lab</p>
+      <p>Кайкен Дархан</p>
+    </div>
+  </section>
+
+  <!-- Список расписаний -->
+  <section class="schedule">
+    <h2>Расписание на сегодня</h2>
+    <div id="schedule-content">
+      <!-- Расписание будет здесь -->
+    </div>
+  </section>
+
+  <script>
+    // Данные CSV файла
+    const csvData = `
+День,Пара,Предмет,Задание
+Понедельник,1,КМ1,Прочитать главы 1-2 и решить задачи на стр. 15-20
+Понедельник,2,БМ2,Написать эссе на тему "Влияние экономики на общество"
+Вторник,1,КМ2,Завершить лабораторную работу №2 и оформить отчет
+Среда,1,КМ4,Выполнить лабораторную работу №3 и оформить отчет
+Четверг,1,КМ2,Выполнить лабораторную работу №4 и подготовить отчет
+Пятница,1,КМ4,Прочитать главы 13-14 и выполнить упражнения на стр. 70-75
+    `;
+
+    // Функция для извлечения расписания на текущий день
+    function getScheduleForToday() {
+      const daysMap = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+      const today = new Date().getDay(); // Получаем индекс дня недели
+      const todayName = daysMap[today];
+
+      // Преобразуем CSV в массив объектов
+      const rows = csvData.trim().split('\n');
+      const headers = rows[0].split(',');
+      const scheduleData = rows.slice(1).map(row => {
+        const values = row.split(',');
+        return headers.reduce((acc, header, index) => {
+          acc[header] = values[index];
+          return acc;
+        }, {});
+      });
+
+      // Фильтруем расписание по текущему дню
+      return scheduleData.filter(item => item.День === todayName);
+    }
+
+    // Функция для отображения расписания в HTML
+    function displaySchedule() {
+      const schedule = getScheduleForToday();
+      const scheduleContent = document.getElementById('schedule-content');
+
+      if (schedule.length === 0) {
+        scheduleContent.innerHTML = '<p>Сегодня нет занятий.</p>';
+        return;
+      }
+
+      schedule.forEach(lesson => {
+        const lessonElement = document.createElement('div');
+        lessonElement.className = 'lesson';
+        lessonElement.innerHTML = `
+          <h3>${lesson.Пара}: ${lesson.Предмет}</h3>
+          <p>${lesson.Задание}</p>
+        `;
+        scheduleContent.appendChild(lessonElement);
+      });
+    }
+
+    // Вызов отображения расписания
+    displaySchedule();
+  </script>
+  <!-- Нижняя навигация -->
+  <nav class="nav">
+    <div class="nav-item active">
+      <a href="glavni.html"><img src="assets/nav_vectors/home.webp" alt="Главная"><span>Главная</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="courses.html"><img src="assets/nav_vectors/courses.webp" alt="Курсы"><span>Курсы</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="helper.html"><img src="assets/nav_vectors/courses.webp" alt="Помощники"><span>Помощники</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+    </div>
+  </nav>
+</body>
+</html>

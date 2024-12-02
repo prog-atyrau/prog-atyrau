@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-database.js"></script>
+    <style>
+        .login-container {
+          border-radius: 50px;
+          background-color: rgba(57, 88, 134, 0);
+          display: flex;
+          max-width: 364px;
+          flex-direction: column;
+          overflow: hidden;
+          align-items: start;
+          padding: 57px 47px 34px;
+        }
+        
+        .welcome-text {
+          font: 600 15px Varta, sans-serif;
+          color: #000;
+          text-align: center;
+          align-self: end;
+          width: 100%;
+        }
+        
+        .social-login-button {
+          border-radius: 8px;
+          background-color: #cbcbcb;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 15px 14px;
+          width: 100%;
+          cursor: pointer;
+        }
+        
+        .social-login-button:first-of-type {
+          margin-top: 57px;
+        }
+        
+        .social-login-button:last-of-type {
+          margin-top: 24px;
+        }
+        
+        .social-icon {
+          width: 27px;
+          height: 27px;
+          object-fit: contain;
+        }
+        
+        .social-text {
+          font: 500 15px Poppins, sans-serif;
+          color: #000;
+        }
+        
+        .divider {
+          color: #949494;
+          font: 300 18px Poppins, sans-serif;
+          align-self: center;
+          margin: 62px 0 34px;
+        }
+        
+        .login-form {
+          width: 100%;
+        }
+        
+        .form-group {
+          margin-bottom: 24px;
+        }
+        
+        .form-label {
+          color: #949494;
+          font: 300 13px Poppins, sans-serif;
+          display: block;
+          margin-bottom: 8px;
+        }
+        
+        .form-input {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid #949494;
+          padding: 8px 0;
+          font: 500 15px Poppins, sans-serif;
+        }
+        
+        .password-group {
+          position: relative;
+        }
+        
+        .toggle-password {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          background: transparent;
+          border: none;
+          padding: 0;
+        }
+        
+        .error-message {
+          color: #638ecb;
+          font: 300 12px Poppins, sans-serif;
+          margin-top: 5px;
+        }
+        
+        .submit-button {
+          border-radius: 8px;
+          background-color: #395886;
+          color: #fff;
+          font: 500 21px Poppins, sans-serif;
+          width: 100%;
+          padding: 9px 0;
+          border: none;
+          cursor: pointer;
+          margin: 40px 0;
+        }
+        
+        .forgot-password {
+          color: #395886;
+          font: 500 15px Poppins, sans-serif;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          margin: 12px 0;
+        }
+        
+        .register-link {
+          color: #395886;
+          font: 600 12px Varta, sans-serif;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          margin-top: 52px;
+        }
+        
+        .visually-hidden {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          border: 0;
+        }
+
+     body {
+            display: block;
+
+            
+        }
+        </style>
+</head>
+<body>
+    <div class="section">
+        <section class="login-container" aria-labelledby="login-title">
+            <h1 id="login-title" class="welcome-text">
+              Добро пожаловать!<br>
+              Создайте аккаунт, чтобы продолжить!
+            </h1>
+          
+            <button id="google-login-btn" class="social-login-button" aria-label="Войти через Google">
+              <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/8c5600ba4bdbd417611a37d7eeb689cd94335816bfa32e4bd0712596a182295c?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="" class="social-icon" aria-hidden="true">
+              <span class="social-text">Регистрация через Google</span>
+            </button>
+          
+          
+            <p class="divider" aria-hidden="true">или</p>
+          
+            <form class="login-form">
+              <div class="form-group">
+                <label for="username">Имя</label>
+                <input type="text" id="username" placeholder="Введите ваше имя" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" placeholder="Введите email" required>
+              </div>
+          
+              <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="Введите пароль" required>
+              </div>
+
+            <!-- <p class="error-message" role="alert">Пароль недействителен!</p> --> 
+          
+            <button type="button" id="register-btn">Зарегистрироваться</button>
+          
+              <a href="index.html" class="register-link">Есть аккаунта? Войти</a>
+            </form>
+          </section>
+    </div>
+
+    <script> 
+      
+
+// Firebase Configuration
+ 
+       const firebaseConfig = {
+        apiKey: "AIzaSyBZV6Q9EzUwHT-3ko3BadwSDMMM1HvISxg",
+        authDomain: "otp-project-26e3a.firebaseapp.com",
+          projectId: "otp-project-26e3a",
+          storageBucket: "otp-project-26e3a.firebasestorage.app",
+          messagingSenderId: "945930190251",
+          appId: "1:945930190251:web:b861e63af5be1b594f66ee"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Регистрация
+document.getElementById("register-btn").addEventListener("click", async () => {
+  const name = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    if (name && email && password) {
+      // Создание пользователя
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      // Сохранение имени пользователя в Firestore
+      await db.collection("users").doc(user.uid).set({
+        name: name,
+        email: email,
+        createdAt: new Date(),
+      });
+
+      // Перенаправление
+      alert("Регистрация успешна! Перенаправляем...");
+      window.location.href = "profile.html"; // Замените на вашу страницу
+    } else {
+      alert("Пожалуйста, заполните все поля.");
+    }
+  } catch (error) {
+    alert(`Ошибка: ${error.message}`);
+  }
+});
+        </script>
+</body>
+</html>
+

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Помощники для студентов</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+    /* Общий стиль */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .header {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .helpers {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .helpers h2 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .helper-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .helper-card {
+      background-color: #f9f9f9;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .helper-card img,
+    .helper-card svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    .helper-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .helper-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .helper-card .btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .helper-card .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Навигационная панель */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      transition: transform 0.3s;
+    }
+
+    .nav-item.active img {
+      transform: scale(1.2);
+    }
+
+    .nav-item:hover img, .nav-item:hover {
+      color: #007bff;
+      transform: scale(1.1);
+    }
+
+    .nav-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .helper-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav {
+        height: 80px;
+      }
+
+      .nav-item {
+        font-size: 14px;
+      }
+
+      .nav-item img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    /* Для маленьких экранов */
+    @media (max-width: 767px) {
+      .helper-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        height: 60px;
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+  <!--    <h1>Студент көмекшілері</h1> -->
+  </header>
+
+  <!-- Основное содержание -->
+  <main>
+    <!-- Раздел Помощники -->
+    <section class="helpers">
+      <h2>Студент көмекшілері</h2>
+
+      <div class="helper-cards">
+        <!-- ChatGPT -->
+        <div class="helper-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/800px-ChatGPT-Logo.png?20230814075517" alt="ChatGPT">
+          <h3>ChatGPT</h3>
+          <p>Быстрая помощь в обучении и генерации текстов.</p>
+          <a href="https://openai.com/chatgpt" target="_blank" class="btn">Перейти</a>
+        </div>
+
+        <!-- Gamma AI -->
+        <div class="helper-card">
+          <img src="assets/gamma.png" alt="Gamma AI">
+          <h3>Gamma AI</h3>
+          <p>Создавайте потрясающие презентации.</p>
+          <a href="https://gamma.app/" target="_blank" class="btn">Перейти</a>
+        </div>
+
+        <!-- Claude AI -->
+        <div class="helper-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path fill="rgba(217,119,87,0.81)" d="..."></path>
+          </svg>
+          <h3>Claude AI</h3>
+          <p>Анализ текста и продвинутые подсказки.</p>
+          <a href="https://claude.ai/" target="_blank" class="btn">Перейти</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Навигация -->
+  <nav class="nav">
+    <div class="nav-item active">
+      <a href="glavni.html"><img src="assets/nav_vectors/home.webp" alt="Главная"><span>Главная</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="courses.html"><img src="assets/nav_vectors/courses.webp" alt="Курсы"><span>Курсы</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/courses.webp" alt="Помощники"><span>Помощники</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+    </div>
+  </nav>
+</body>
+</html>

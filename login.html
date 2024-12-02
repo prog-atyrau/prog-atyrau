@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    .header {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      max-width: 150px;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-container input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .login-container button {
+      padding: 10px;
+      background-color: #395886;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background-color: #2c4370;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/solo_polit_logo.png" alt="Atyrau Polytechnic Logo">
+  </div>
+  <div class="login-container">
+    <h1>Авторизация</h1>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Введите email" required>
+      <input type="password" id="password" placeholder="Введите пароль" required>
+      <div id="error" class="error"></div>
+      <button type="submit">Войти</button>
+    </form>
+  </div>
+
+  <script>
+    // Данные студентов из CSV
+    const csvData = `ID,Name,email,Group,Password
+1,Аққали Асылжан Наурызбайұлы,aqqaliasylzhan@mail.ru,ПОа-23,xRvGhbuwAy8WFB4jQXTaMg
+2,Бергенұлы Аян,Korgioo88@gmail.com,ПОа-23,WMHwe4maxZsNLjKpVS5qtE
+3,Берікқали Жанарыс Думанұлы,berikkalyzhanaris@mail.ru,ПОа-23,ePKG7m2WsYC4fAt8bahRHX
+4,Билханова Гаухар Абубакировна,bilkhanovag@mail.ru,ПОа-23,SR5p42AfsF3BT6XxkajDVz
+5,Булатов Иса Асхатович,isabolatov0@gmail.com,ПОа-23,dgZzLTKNb2WwUJDRFB8QtC
+6,Ғизатолла Айназ Айболатқызы,g.ainaz@mail.ru,ПОа-23,CaQWgE5rxk6mJh8tHypY9z
+7,Жолдаскалиев Муханбетали Айдарбекович,zholdaskaliev.m07@gmail.com,ПОа-23,LqVfeUWa8FE2NuTJ5wGv4M
+8,Кайкен Дархан Орынбасарұлы,kajkendarhan0@gmail.com,ПОа-23,123
+9,Камал Нұрәли Болатұлы,nurali757799@gmail.com,ПОа-23,CUvenqpbhMKAQ4PNt27ZH6
+10,Кенесбаев Данияр Нурбекович,kenesbaevdaniar77@gmail.com,ПОа-23,RjtFDnYLxV94fTb57A2Xhu
+11,Кәрім Зәмзәм Рүстемқызы,kzamzam93@gmail.com,ПОа-23,bnf94GwQNkRt7UqDWZ8sXJ
+12,Қуаныш Расул Асылбекұлы,rasulkunaysh@gmail.com,ПОа-23,Ksy3H8ucx7mhVLpvWANFEU
+13,Молдағалиқызы Аққу,a.moldagaliqyzyy@mail.ru,ПОа-23,xZM754dAwvfS8jbupJPUB2
+14,Мурзагалиев Асылбек Аскарович,Maksotajsa15@gmail.com,ПОа-23,Lz2j4Ap6GxJu9BmVNSC3bM
+15,Райс Аружан Кайраткызы,Raisaruzhan08@gmail.com,ПОа-23,spBcECUzDa9LnHj5yX7tr2
+16,Рысжан Ялла Жұлдызбекқызы,ryszhanovayalla@gmail.com,ПОа-23,KgWJynpfHxRYeNP7b3dwtL
+17,Саниева Мадина Талгатовна,Saniyeva.madina@mail.ru,ПОа-23,cC7jfdqRnBZkAVYvs2QK54
+18,Сапиолла Нұрдәулет Русланұлы,Nuriksapiolla8@gmail.com,ПОа-23,VS5Z4yuE3aFhm8brWTxnBL
+19,Сәлімжан Даниял Дәуренұлы,Bbb_danyal@mail.ru,ПОа-23,yn7zZ98j2Y4wXShQsepUqt
+20,Талғат Ғаламат Даниярұлы,talgatgalamat@mail.com,ПОа-23,CVgGYR6Md3K9PfNmHFEwse
+21,Туленова Диляра Галиденовна,dilaratulenova@gmail.com,ПОа-23,yMxdAWQj7uBZevkHnC8VKX
+22,Туленова Динара Галиденовна,tulenovadinara1@hgmail.com,ПОа-23,etzBPJvFmULN2Q948pD7XV
+23,Утегенова Диляра Рафайловна,Dilara2008ytegenova@gmail.com,ПОа-23,NBX5kz8hPJQg2x4yfHAqt6
+24,Хаттаров Ержан Ельжанович,Khattarov_erzhan06@bk.ru,ПОа-23,uaqnUv9eWPE8pwHYQKrB5Z
+25,Шиндаулова Айсу Ризабековна,Aisushindaulova08@mail.ru,ПОа-23,rGZNTgUBa6y74A8kCLPEmY
+26,Admin Пока что :),admin@mail.kz,ПОа-23,admin
+`;
+
+    // Парсим CSV в массив объектов
+    const students = csvData
+      .split("\n")
+      .slice(1) // Пропускаем заголовок
+      .map((line) => {
+        const [id, name, email, group, password] = line.split(",");
+        return { id, name, email, group, password };
+      });
+
+    // Обработка формы
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const emailInput = document.getElementById("email").value.trim();
+      const passwordInput = document.getElementById("password").value.trim();
+      const errorElement = document.getElementById("error");
+
+      // Поиск пользователя
+      const student = students.find(
+        (s) => s.email === emailInput && s.password === passwordInput
+      );
+
+      if (student) {
+        // Сохраняем данные в localStorage
+        localStorage.setItem("studentName", student.name);
+        localStorage.setItem("studentGroup", student.group);
+
+        // Переход на страницу профиля
+        window.location.href = "dashboard.html";
+      } else {
+        // Если пользователь не найден
+        errorElement.textContent = "Неверный email или пароль!";
+      }
+    });
+  </script>
+</body>
+</html>

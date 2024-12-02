@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кесте</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    #current-day, #current-date {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    #schedule-content {
+      margin: 20px auto;
+      width: 95%;
+      max-width: 1200px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    td {
+      background-color: #fdfdfd;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f7f7f7;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Навигационная панель */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      transition: transform 0.3s;
+    }
+
+    .nav-item.active img {
+      transform: scale(1.2);
+    }
+
+    .nav-item:hover img, .nav-item:hover {
+      color: #007bff;
+      transform: scale(1.1);
+    }
+
+    .nav-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .helper-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav {
+        height: 80px;
+      }
+
+      .nav-item {
+        font-size: 14px;
+      }
+
+      .nav-item img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    /* Для маленьких экранов */
+    @media (max-width: 767px) {
+      .helper-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        height: 60px;
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Сабақ Кестесі</h1>
+  <p id="current-day"></p>
+  <p id="current-date"></p>
+  <div id="schedule-content"></div>
+
+  <nav class="nav">
+    <div class="nav-item active">
+      <a href="glavni.html"><img src="assets/nav_vectors/home.webp" alt="Главная"><span>Главная</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="courses.html"><img src="assets/nav_vectors/courses.webp" alt="Курсы"><span>Курсы</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="helper.html"><img src="assets/nav_vectors/courses.webp" alt="Помощники"><span>Помощники</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+    </div>
+  </nav>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const days = ["Жексенбі", "Дүйсенбі", "Сейсенбі", "Сәрсенбі", "Бейсенбі", "Жұма", "Сенбі"];
+
+      // Устанавливаем текущую дату с учетом времени Казахстана (Asia/Almaty)
+      const now = new Date();
+      const localDate = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Almaty" }));
+      const todayIndex = localDate.getDay(); // Индекс текущего дня недели
+      const todayName = days[todayIndex];
+      const todayDate = localDate.toLocaleDateString('kk-KZ', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      document.getElementById("current-day").textContent = `Бүгін: ${todayName}`;
+      document.getElementById("current-date").textContent = `Дата: ${todayDate}`;
+
+      // Данные расписания
+      const scheduleData = [
+        ["Күні", "Пара", "Уақыты", "Поа-23", "Оқытушы", "Кабинет"],
+        ["Дүйсенбі", "0.0", "12:45-13:25", "", "", ""],
+        ["", "1.0", "14:15-14:55", "БМ 3 ОН 3.1", "Баймуханова М.", "211"],
+        ["", "2.0", "14:15-14:55", "БМ 3 ОН 3.1", "Баймуханова М.", "211"],
+        ["", "3.0", "15:00-15:40", "БМ 2 ОН 2.1", "Искакова Н.", "113"],
+        ["", "4.0", "15:45-16:25", "БМ 2 ОН 2.1", "Искакова Н.", "113"],
+        ["Сейсенбі", "0.0", "12:45-13:25", "", "", ""],
+        ["", "1.0", "14:15-14:55", "БМ 01 ОН 1.1", "Набиева Г.", "с/3"],
+        ["", "2.0", "14:15-14:55", "БМ 01 ОН 1.1", "Набиева Г.", "с/3"],
+        ["Сәрсенбі", "0.0", "12:45-13:25", "КМ 1 ОН 1.3", "Бағыт А.", ""],
+        ["", "1.0", "14:15-14:55", "КМ 1 ОН 1.1", "Бағыт А.", "318"],
+        ["", "2.0", "14:15-14:55", "КМ 1 ОН 1.1", "Бағыт А.", "318"],
+        ["Бейсенбі", "0.0", "12:45-13:25", "", "", ""],
+        ["", "1.0", "14:15-14:55", "КМ 4 ОН 4.1", "Конашова А.", "318"],
+        ["Жұма", "0.0", "12:45-13:25", "", "", ""],
+        ["", "1.0", "14:15-14:55", "БМ 01 ОН 1.1", "Набиева Г.", "с/3"],
+      ];
+
+      // Фильтрация расписания для текущего дня
+      const filteredSchedule = [];
+let include = false;
+
+for (const row of scheduleData) {
+  if (row[0] === todayName) {
+    include = true; // Начинаем включать строки текущего дня
+  }
+
+  if (include && (row[0] === todayName || row[0] === "")) {
+    filteredSchedule.push(row); // Добавляем строки текущего дня
+  }
+
+  if (include && row[0] !== todayName && row[0] !== "") {
+    break; // Завершаем, когда начинается другой день
+  }
+}
+
+      // Отображение расписания
+      const scheduleContainer = document.getElementById("schedule-content");
+      if (filteredSchedule.length > 0) {
+        const table = `
+          <table>
+            <thead>
+              <tr>${scheduleData[0].map(header => `<th>${header}</th>`).join("")}</tr>
+            </thead>
+            <tbody>
+              ${filteredSchedule.map(row => `
+                <tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>
+              `).join("")}
+            </tbody>
+          </table>`;
+        scheduleContainer.innerHTML = table;
+      } else {
+        scheduleContainer.innerHTML = "<p>Бүгін сабақтар жоқ.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курсы</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      padding-bottom: 80px; /* Добавлен отступ снизу */
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .search-bar input::placeholder {
+      color: #aaa;
+    }
+
+    .search-bar img {
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
+    }
+
+    .course-list {
+      list-style: none;
+      padding: 0;
+      margin: 100px 0;
+      padding: 50px 0;
+    }
+
+    .course-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px; /* Увеличен отступ между курсами */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .course-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .course-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 12px 16px;
+      box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+      font-weight: 800;
+      border-radius: 16px;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav a span {
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      transition: transform 0.3s;
+    }
+
+    .nav-item.active img {
+      transform: scale(1.2);
+    }
+
+    .nav-item:hover img, .nav-item:hover {
+      color: #007bff;
+      transform: scale(1.1);
+    }
+
+    .nav-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .helper-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav {
+        height: 80px;
+      }
+
+      .nav-item {
+        font-size: 14px;
+      }
+
+      .nav-item img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    /* Для маленьких экранов */
+    @media (max-width: 767px) {
+      .helper-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        height: 60px;
+        flex-direction: row;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Курсы</h1>
+  
+    <ul class="course-list">
+      <li class="course-item">
+        <span class="course-name">Inventor 3D</span>
+        <img class="course-icon" src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&amp;" alt="Next Icon">
+      </li>
+      <li class="course-item">
+        <span class="course-name">Adobe Photoshop</span>
+        <img class="course-icon" src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&amp;" alt="Next Icon">
+      </li>
+      <li class="course-item">
+        <span class="course-name">Киберқауіпсіздік</span>
+        <img class="course-icon" src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&amp;" alt="Next Icon">
+      </li>
+      <li class="course-item">
+        <span class="course-name">Web-site әзірлеу</span>
+        <img class="course-icon" src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9bee4da5675dc9af52b105246cc79576e67c3e10c06bbd12d29c8556283f5105?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&amp;" alt="Next Icon">
+      </li>
+    </ul>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-item active">
+      <a href="glavni.html"><img src="assets/nav_vectors/home.webp" alt="Главная"><span>Главная</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/courses.webp" alt="Курсы"><span>Курсы</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="helper.html"><img src="assets/nav_vectors/courses.webp" alt="Помощники"><span>Помощники</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+    </div>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .login-container {
+          border-radius: 50px;
+          background-color: rgba(57, 88, 134, 0);
+          display: flex;
+          max-width: 364px;
+          flex-direction: column;
+          overflow: hidden;
+          align-items: start;
+          padding: 57px 47px 34px;
+        }
+        
+        .welcome-text {
+          font: 600 15px Varta, sans-serif;
+          color: #000;
+          text-align: center;
+          align-self: end;
+          width: 100%;
+        }
+        
+        .social-login-button {
+          border-radius: 8px;
+          background-color: #cbcbcb;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 15px 14px;
+          width: 100%;
+          cursor: pointer;
+        }
+        
+        .social-login-button:first-of-type {
+          margin-top: 57px;
+        }
+        
+        .social-login-button:last-of-type {
+          margin-top: 24px;
+        }
+        
+        .social-icon {
+          width: 27px;
+          height: 27px;
+          object-fit: contain;
+        }
+        
+        .social-text {
+          font: 500 15px Poppins, sans-serif;
+          color: #000;
+        }
+        
+        .divider {
+          color: #949494;
+          font: 300 18px Poppins, sans-serif;
+          align-self: center;
+          margin: 62px 0 34px;
+        }
+        
+        .login-form {
+          width: 100%;
+        }
+        
+        .form-group {
+          margin-bottom: 24px;
+        }
+        
+        .form-label {
+          color: #949494;
+          font: 300 13px Poppins, sans-serif;
+          display: block;
+          margin-bottom: 8px;
+        }
+        
+        .form-input {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid #949494;
+          padding: 8px 0;
+          font: 500 15px Poppins, sans-serif;
+        }
+        
+        .password-group {
+          position: relative;
+        }
+        
+        .toggle-password {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          background: transparent;
+          border: none;
+          padding: 0;
+        }
+        
+        .error-message {
+          color: #638ecb;
+          font: 300 12px Poppins, sans-serif;
+          margin-top: 5px;
+        }
+        
+        .submit-button {
+          border-radius: 8px;
+          background-color: #395886;
+          color: #fff;
+          font: 500 21px Poppins, sans-serif;
+          width: 100%;
+          padding: 9px 0;
+          border: none;
+          cursor: pointer;
+          margin: 40px 0;
+        }
+        
+        .forgot-password {
+          color: #395886;
+          font: 500 15px Poppins, sans-serif;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          margin: 12px 0;
+        }
+        
+        .register-link {
+          color: #395886;
+          font: 600 12px Varta, sans-serif;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          margin-top: 52px;
+        }
+        
+        .visually-hidden {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          border: 0;
+        }
+
+     body {
+            display: block;
+
+            
+        }
+        </style>
+</head>
+<body>
+    <div class="section">
+        <section class="login-container" aria-labelledby="login-title">
+            <h1 id="login-title" class="welcome-text">
+              Добро пожаловать!<br>
+              Войдите, чтобы продолжить!
+            </h1>
+          
+            <button id="google-login-btn" class="social-login-button" aria-label="Войти через Google">
+              <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/8c5600ba4bdbd417611a37d7eeb689cd94335816bfa32e4bd0712596a182295c?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="" class="social-icon" aria-hidden="true">
+              <span class="social-text">Войти через Google</span>
+            </button>
+          
+            <button class="social-login-button" aria-label="Войти через Facebook">
+              <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/9e8b37f4d132ed3347a66477756914db987186cda649eed71dd92530d80f6156?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="" class="social-icon" aria-hidden="true">
+              <span class="social-text">Войти через Facebook</span>
+            </button>
+          
+            <p class="divider" aria-hidden="true">или</p>
+          
+            <form class="login-form">
+              <div class="form-group">
+                <label for="username" class="form-label">Имя</label>
+                <input type="text" id="username" class="form-input" required>
+              </div>
+          
+              <div class="form-group password-group">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" id="password" class="form-input" required>
+                <button type="button" class="toggle-password" aria-label="Показать пароль">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/f912ebcc9a3638fe6e7ce09b60118a51a21d8acbf1d0d824fd5a42377310e59c?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&" alt="" aria-hidden="true">
+                </button>
+              </div>
+          
+            <!-- <p class="error-message" role="alert">Пароль недействителен!</p> --> 
+          
+              <button type="submit" class="submit-button">Логин</button>
+          
+              <a href="#" class="forgot-password">Забыли пароль?</a>
+              <a href="register.html" class="register-link">Нет аккаунта? Зарегистрируйтесь</a>
+            </form>
+          </section>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('password');
+    const togglePasswordButton = document.querySelector('.toggle-password');
+    const errorMessage = document.querySelector('.error-message');
+    const loginForm = document.querySelector('.login-form');
+
+    // Toggle password visibility
+    togglePasswordButton.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Optionally change the button's icon or label
+        const img = togglePasswordButton.querySelector('img');
+        img.src = type === 'password'
+            ? 'https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/f912ebcc9a3638fe6e7ce09b60118a51a21d8acbf1d0d824fd5a42377310e59c?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&'
+            : 'https://cdn.builder.io/api/v1/image/assets/b86be1720de14b8b90d5b2726c4eb2ea/8c5600ba4bdbd417611a37d7eeb689cd94335816bfa32e4bd0712596a182295c?apiKey=b86be1720de14b8b90d5b2726c4eb2ea&';
+    });
+
+    // Form submission handling
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
+        const password = passwordInput.value.trim();
+
+        // Example: Validate the password against some specific criteria
+        if (username === "admin" && password === "12345678") {
+            errorMessage.style.display = 'none'; // Hide error if successful
+            alert('Добро пожаловать, ' + username + '!');
+            // Redirect or process login logic
+        } else {
+            // Show error message
+            errorMessage.textContent = 'Пароль недействителен!';
+            errorMessage.style.display = 'block';
+        }
+    });
+});
+
+    </script>
+    <!--Авторизация Google enable Firebase-->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+  
+      const firebaseConfig = {
+        apiKey: "AIzaSyAeLyqaALlKzmqlwS6Zx1ZlNzyIYfRPogc",
+        authDomain: "politech-app.firebaseapp.com",
+        projectId: "politech-app",
+        storageBucket: "politech-app.appspot.com",
+        messagingSenderId: "384282151053",
+        appId: "1:384282151053:web:d1a86dcf7b80eb85aafac4",
+        measurementId: "G-SXPSGZY0K7"
+      };
+  
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const provider = new GoogleAuthProvider();
+  
+      document.getElementById('google-login-btn').addEventListener('click', () => {
+        signInWithPopup(auth, provider)
+          .then(result => {
+            const user = result.user;
+            // Сохранить данные в localStorage
+            localStorage.setItem('userName', user.displayName);
+            localStorage.setItem('userEmail', user.email);
+            window.location.href = "profile.html";
+          })
+          .catch(error => console.error(error.message));
+      });
+    </script>
+
+      </script>
+</body>
+</html>
+

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .profile-container {
+      flex: 1;
+      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .profile-header {
+      background: linear-gradient(135deg, #395886, #6a9eff);
+      color: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .profile-info {
+      text-align: center;
+    }
+    .profile-info p {
+      margin: 8px 0;
+    }
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 12px 16px;
+      box-shadow: 0px -4px 8px rgba(57, 88, 134, 0.5);
+      opacity: 0.9;
+      font-weight: bold;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 16px 16px 0 0;
+    }
+    .bottom-nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav a span {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+     /* Навигационная панель */
+     .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      transition: transform 0.3s;
+    }
+
+    .nav-item.active img {
+      transform: scale(1.2);
+    }
+
+    .nav-item:hover img, .nav-item:hover {
+      color: #007bff;
+      transform: scale(1.1);
+    }
+
+    .nav-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Адаптивность */
+    @media (min-width: 768px) {
+      .helper-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav {
+        height: 80px;
+      }
+
+      .nav-item {
+        font-size: 14px;
+      }
+
+      .nav-item img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    /* Для маленьких экранов */
+    @media (max-width: 767px) {
+      .helper-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        height: 60px;
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1>Профиль</h1>
+      <div class="profile-info">
+        <p>Имя: <span id="userName"></span></p>
+        <p>Почта: <span id="userEmail"></span></p>
+      </div>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="nav-item active">
+      <a href="glavni.html"><img src="assets/nav_vectors/home.webp" alt="Главная"><span>Главная</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="courses.html"><img src="assets/nav_vectors/courses.webp" alt="Курсы"><span>Курсы</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/courses.webp" alt="Помощники"><span>Помощники</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="schedule.html"><img src="assets/nav_vectors/schedule.webp" alt="Расписание"><span>Расписание</span></a>
+    </div>
+    <div class="nav-item">
+      <a href="#"><img src="assets/nav_vectors/profile.webp" alt="Профиль"><span>Профиль</span></a>
+    </div>
+  </nav>
+
+  <script>
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+
+    if (userName && userEmail) {
+      document.getElementById('userName').textContent = userName;
+      document.getElementById('userEmail').textContent = userEmail;
+    } else {
+      alert("Пользователь не авторизован!");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

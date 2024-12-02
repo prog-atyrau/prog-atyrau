@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+          /* background: linear-gradient(135deg, #1e3a8a, #2563eb); */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            color:#2563eb;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header {
+            margin-top: 50px;
+        }
+
+        .header img {
+            width: 120px;
+            height: auto;
+        }
+
+        .content {
+            margin: auto;
+        }
+
+        .content h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 20px;
+            font-weight: 400;
+            color: #dbeafe;
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Анимация плавного появления */
+        .header, .content, .footer {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Адаптивность для маленьких экранов */
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+
+            .footer {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Верхняя часть с логотипом -->
+    <div class="header">
+        <img src="assets/solo_polit_logo.png" alt="Atyrau Polytechnic Logo">
+    </div>
+
+    <!-- Центральный текст -->
+    <div class="content">
+        <h1>Atyrau Politechnic</h1>
+        <p>Трекер для студентов и преподавателей</p>
+    </div>
+
+    <!-- Нижняя часть с копирайтом -->
+    <div class="footer">
+        Copyright © 2024 Atyrau Polytechnic<br>
+        All Right Reserved
+    </div>
+
+    <script>
+        // Перенаправление на страницу логина через 3 секунды
+        setTimeout(() => {
+            window.location.href = "../login.html";
+        }, 3000);
+    </script>
+</body>
+</html>
